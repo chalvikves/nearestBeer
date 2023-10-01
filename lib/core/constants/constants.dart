@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+String kName = 'name';
+String kId = 'id';
+String kClosingTime = 'closingTime';
+String kPath = 'path';
+
 Color kBeerColor = const Color(0xFFF28E1C);
 Color kAccentColor = const Color(0xFFF28E1C);
 Color kPrimaryColorDark = const Color(0xFF0E0E0E);

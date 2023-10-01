@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:nearest_beer/core/constants/constants.dart';
 import 'package:nearest_beer/features/beer/presentation/providers/beer_button_provider.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +12,7 @@ class BeerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     BeerButtonProvider beerButtonProvider =
         Provider.of<BeerButtonProvider>(context);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

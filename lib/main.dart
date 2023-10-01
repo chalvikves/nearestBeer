@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:nearest_beer/core/constants/constants.dart';
+import 'package:nearest_beer/features/bar/presentation/providers/bar_provider.dart';
 import 'package:nearest_beer/features/beer/presentation/providers/beer_button_provider.dart';
+import 'package:nearest_beer/features/settings/presentation/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'features/skeleton/providers/selected_page_provider.dart';
@@ -21,7 +25,13 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => BeerButtonProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SettingsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BarProvider(),
+        ),
       ],
       child: MaterialApp(
         home: const Home(),
@@ -40,6 +50,9 @@ class MyApp extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Colors.black87,
           ),
+          primaryColorDark: kPrimaryColorDark,
+          primaryColorLight: kPrimaryColorLight,
+          scaffoldBackgroundColor: kPrimaryColorLight,
         ),
       ),
     );
@@ -57,6 +70,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+
+    Provider.of<BarProvider>(context, listen: false)
+        .eitherFailureOrBarEntity(id: 1);
   }
 
   @override
