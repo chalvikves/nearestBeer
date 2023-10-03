@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
 import 'package:nearest_beer/core/constants/constants.dart';
 import 'package:nearest_beer/features/beer/presentation/providers/beer_button_provider.dart';

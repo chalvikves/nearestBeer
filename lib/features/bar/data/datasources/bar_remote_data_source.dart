@@ -1,11 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nearest_beer/core/errors/exceptions.dart';
 
 import '../../../../core/params/params.dart';
 import '../models/bar_model.dart';
 
 abstract class BarRemoteDataSource {
-  Future<BarModel> getClosestBar({required TestParams params});
+  Future<BarModel> getClosestBarFromPosition({
+    required TestParams params,
+    required Position position,
+  });
 }
 
 class BarRemoteDataSourceImpl implements BarRemoteDataSource {
@@ -14,7 +18,10 @@ class BarRemoteDataSourceImpl implements BarRemoteDataSource {
   BarRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<BarModel> getClosestBar({required TestParams params}) async {
+  Future<BarModel> getClosestBarFromPosition({
+    required TestParams params,
+    required Position position,
+  }) async {
     // final response = await dio.get(
     //   'https://maps.googleapis.com/maps/api/place/nearbysearch/output?$params',
     //   queryParameters: {

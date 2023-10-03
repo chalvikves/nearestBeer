@@ -39,14 +39,17 @@ class BarProvider extends ChangeNotifier {
         DataConnectionChecker(),
       ),
     );
+    final position = await repository.localDataSource.getCurrentPosition();
 
     final failureOrBar = await GetBar(barRepository: repository).call(
-        // barParams: BarParams(
-        //   location: location,
-        //   radius: radius,
-        //   type: type,
-        // ),
-        barParams: TestParams(id: id));
+      // barParams: BarParams(
+      //   location: location,
+      //   radius: radius,
+      //   type: type,
+      // ),
+      barParams: TestParams(id: id),
+      position: position,
+    );
 
     failureOrBar.fold((newFalure) {
       barEntity = null;

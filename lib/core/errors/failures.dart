@@ -11,3 +11,7 @@ class ServerFailure extends Failure {
 class CacheFailure extends Failure {
   CacheFailure({required errorMessage}) : super(errorMessage: errorMessage);
 }
+
+class LocationFailure extends Failure {
+  LocationFailure({required errorMessage}) : super(errorMessage: errorMessage);
+}

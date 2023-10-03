@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nearest_beer/core/connection/network_info.dart';
 import 'package:nearest_beer/core/errors/exceptions.dart';
 import 'package:nearest_beer/core/params/params.dart';
@@ -23,12 +24,16 @@ class BarRepositoryImpl implements BarRepository {
   });
 
   @override
-  Future<Either<Failure, BarModel>> getBar(
-      {required TestParams barParams}) async {
+  Future<Either<Failure, BarModel>> getBar({
+    required TestParams barParams,
+    required Position position,
+  }) async {
     if (await networkInfo.isConnected!) {
       try {
-        final remoteBar =
-            await remoteDataSource.getClosestBar(params: barParams);
+        final remoteBar = await remoteDataSource.getClosestBarFromPosition(
+          params: barParams,
+          position: position,
+        );
 
         localDataSource.cacheBar(remoteBar);
 
@@ -43,6 +48,16 @@ class BarRepositoryImpl implements BarRepository {
       } on CacheException {
         return Left(CacheFailure(errorMessage: 'No local data found'));
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, Position>> getCurrentPosition() async {
+    try {
+      final position = await localDataSource.getCurrentPosition();
+      return Right(position);
+    } on LocationException {
+      return Left(LocationFailure(errorMessage: 'Location is disabled'));
     }
   }
 }

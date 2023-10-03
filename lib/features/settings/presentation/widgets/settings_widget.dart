@@ -20,7 +20,7 @@ class SettingsWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 50,
+          height: 32,
         ),
         Row(
           children: [
@@ -91,35 +91,23 @@ class SettingsWidget extends StatelessWidget {
                   trailing: Icon(Icons.arrow_forward_ios_outlined),
                   contentPadding: EdgeInsets.zero,
                 ),
-                // Row(
-                //   children: [
-                //     TextButton.icon(
-                //       onPressed: () {},
-                //       style: TextButton.styleFrom(
-                //         padding: EdgeInsets.zero,
-                //         foregroundColor: kAccentColor,
-                //       ),
-                //       icon: const Icon(Icons.favorite_outline),
-                //       label: const Text(
-                //         'Show Favorites',
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // Row(
-                //   children: [
-                //     TextButton(
-                //       onPressed: () {},
-                //       style: TextButton.styleFrom(
-                //         padding: EdgeInsets.zero,
-                //         foregroundColor: kAccentColor,
-                //       ),
-                //       child: const Text(
-                //         'Clear History',
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                const Divider(),
+                const ListTile(
+                  title: Text(
+                    'Hope you enjoy the app!',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                  subtitle: Text(
+                    'Please consider donating a coffee',
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  trailing: Icon(Icons.coffee_outlined),
+                  contentPadding: EdgeInsets.zero,
+                ),
               ],
             ),
           ),
