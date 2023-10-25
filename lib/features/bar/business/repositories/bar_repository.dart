@@ -7,7 +7,7 @@ import 'package:nearest_beer/features/bar/business/entities/bar_entity.dart';
 abstract class BarRepository {
   Future<Either<Failure, BarEntity>> getBar({
     required TestParams barParams,
-    required Position position,
+    //required Position position,
   });
-  Future<Either<Failure, Position>> getCurrentPosition();
+  //Future<Either<Failure, Position>> getCurrentPosition();
 }

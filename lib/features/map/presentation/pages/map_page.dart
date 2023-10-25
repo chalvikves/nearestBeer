@@ -6,7 +6,7 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: SizedBox(
         width: double.infinity,
         child: Column(

@@ -14,11 +14,11 @@ class GetBar {
 
   Future<Either<Failure, BarEntity>> call({
     required TestParams barParams,
-    required Position position,
+    //required Position position,
   }) async {
     return await barRepository.getBar(
       barParams: barParams,
-      position: position,
+      //position: position,
     );
   }
 }

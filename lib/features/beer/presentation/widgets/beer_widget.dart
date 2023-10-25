@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:nearest_beer/core/constants/constants.dart';
+import 'package:nearest_beer/features/bar/presentation/providers/bar_provider.dart';
 import 'package:nearest_beer/features/beer/presentation/providers/beer_button_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,7 @@ class BeerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     BeerButtonProvider beerButtonProvider =
         Provider.of<BeerButtonProvider>(context);
+    BarProvider barProvider = Provider.of<BarProvider>(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -31,6 +33,7 @@ class BeerWidget extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
+            barProvider.getPosition();
             beerButtonProvider.changePressed(true);
           },
           icon: const Icon(Icons.sports_bar_outlined),

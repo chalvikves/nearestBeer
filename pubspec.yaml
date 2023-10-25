@@ -21,6 +21,7 @@ dependencies:
   animated_icon_button: ^1.0.2
   simple_animations: ^5.0.2
   geolocator: ^10.1.0
+  google_maps_flutter: ^2.5.0
 
   cupertino_icons: ^1.0.2
 
@@ -29,6 +30,13 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/bf.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true

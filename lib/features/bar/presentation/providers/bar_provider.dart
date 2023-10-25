@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nearest_beer/core/connection/network_info.dart';
 import 'package:nearest_beer/core/errors/failures.dart';
 import 'package:nearest_beer/core/params/params.dart';
@@ -22,6 +25,23 @@ class BarProvider extends ChangeNotifier {
     this.failure,
   });
 
+  Future<Position> getPosition() async {
+    log('In getPosition');
+    BarRepositoryImpl repository = BarRepositoryImpl(
+      remoteDataSource: BarRemoteDataSourceImpl(
+        dio: Dio(),
+      ),
+      localDataSource: BarLocalDataSourceImpl(
+        sharedPreferences: await SharedPreferences.getInstance(),
+      ),
+      networkInfo: NetworkInfoImpl(
+        DataConnectionChecker(),
+      ),
+    );
+
+    return repository.localDataSource.getCurrentPosition();
+  }
+
   void eitherFailureOrBarEntity({
     // required Geometry location,
     // required int radius,
@@ -39,7 +59,7 @@ class BarProvider extends ChangeNotifier {
         DataConnectionChecker(),
       ),
     );
-    final position = await repository.localDataSource.getCurrentPosition();
+    //final position = await repository.localDataSource.getCurrentPosition();
 
     final failureOrBar = await GetBar(barRepository: repository).call(
       // barParams: BarParams(
@@ -48,7 +68,7 @@ class BarProvider extends ChangeNotifier {
       //   type: type,
       // ),
       barParams: TestParams(id: id),
-      position: position,
+      //position: position,
     );
 
     failureOrBar.fold((newFalure) {

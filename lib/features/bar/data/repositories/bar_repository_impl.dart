@@ -26,13 +26,13 @@ class BarRepositoryImpl implements BarRepository {
   @override
   Future<Either<Failure, BarModel>> getBar({
     required TestParams barParams,
-    required Position position,
+    //required Position position,
   }) async {
     if (await networkInfo.isConnected!) {
       try {
         final remoteBar = await remoteDataSource.getClosestBarFromPosition(
           params: barParams,
-          position: position,
+          // position: position,
         );
 
         localDataSource.cacheBar(remoteBar);
@@ -51,13 +51,13 @@ class BarRepositoryImpl implements BarRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, Position>> getCurrentPosition() async {
-    try {
-      final position = await localDataSource.getCurrentPosition();
-      return Right(position);
-    } on LocationException {
-      return Left(LocationFailure(errorMessage: 'Location is disabled'));
-    }
-  }
+  // @override
+  // Future<Either<Failure, Position>> getCurrentPosition() async {
+  //   try {
+  //     final position = await localDataSource.getCurrentPosition();
+  //     return Right(position);
+  //   } on LocationException {
+  //     return Left(LocationFailure(errorMessage: 'Location is disabled'));
+  //   }
+  // }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,7 +64,6 @@ class BarLocalDataSourceImpl implements BarLocalDataSource {
     if (permission == LocationPermission.deniedForever) {
       return false;
     }
-
     return true;
   }
 

@@ -44,4 +44,4 @@ app.*.map.json
 /android/app/release
 
 # APIkey
-api_key.json
+api-key.json

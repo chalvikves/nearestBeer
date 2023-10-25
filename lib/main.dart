@@ -1,8 +1,12 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nearest_beer/core/constants/constants.dart';
 import 'package:nearest_beer/features/bar/presentation/providers/bar_provider.dart';
 import 'package:nearest_beer/features/beer/presentation/providers/beer_button_provider.dart';
+import 'package:nearest_beer/features/map/presentation/providers/map_provider.dart';
 import 'package:nearest_beer/features/settings/presentation/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => BarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MapProvider(),
         ),
       ],
       child: MaterialApp(
